@@ -1,0 +1,5 @@
+osmnx
+shapely
+matplotlib
+scikit-learn
+openpyxl
