@@ -19,7 +19,8 @@ nodes_gdf, edges_gdf = ox.graph_to_gdfs(tram_graph, nodes=True, edges=True)
 print(f"Graph has {len(nodes_gdf)} nodes and {len(edges_gdf)} edges.")
 
 # Load tram stops
-geojson_tram_stops = "stop_demand_time/stops_demand_hour_15.geojson"
+hour = str(input("Hour: "))
+geojson_tram_stops = f"stop_demand_time/stops_demand_hour_{hour}.geojson"
 stops_gdf = gpd.read_file(geojson_tram_stops).to_crs(nodes_gdf.crs) if os.path.exists(geojson_tram_stops) else None
 
 def snap_stops_to_graph(G, stops_gdf):

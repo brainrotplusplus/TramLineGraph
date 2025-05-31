@@ -3,3 +3,4 @@ shapely
 matplotlib
 scikit-learn
 openpyxl
+networkx
