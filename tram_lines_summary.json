@@ -1,0 +1,50 @@
+[
+  {
+    "line_number": 1,
+    "color": "red",
+    "start_stop": "Os. Piastów 01",
+    "total_demand": 13443.014108803787,
+    "length_km": 39.24174429302049,
+    "num_stops": 52
+  },
+  {
+    "line_number": 2,
+    "color": "blue",
+    "start_stop": "Bronowice 01",
+    "total_demand": 12918.797820126716,
+    "length_km": 26.398713028753477,
+    "num_stops": 45
+  },
+  {
+    "line_number": 3,
+    "color": "green",
+    "start_stop": "Salwator 01",
+    "total_demand": 12951.615779120288,
+    "length_km": 21.939081282885276,
+    "num_stops": 31
+  },
+  {
+    "line_number": 4,
+    "color": "orange",
+    "start_stop": "Borek Fałęcki 01",
+    "total_demand": 13228.70008702599,
+    "length_km": 42.93402774431765,
+    "num_stops": 57
+  },
+  {
+    "line_number": 5,
+    "color": "purple",
+    "start_stop": "Łagiewniki 03",
+    "total_demand": 11719.197804115338,
+    "length_km": 42.12647701638556,
+    "num_stops": 60
+  },
+  {
+    "line_number": 6,
+    "color": "brown",
+    "start_stop": "Dąbie 03",
+    "total_demand": 8191.462826280925,
+    "length_km": 20.824967169488918,
+    "num_stops": 33
+  }
+]

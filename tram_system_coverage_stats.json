@@ -1,0 +1,36 @@
+{
+  "total_lines": 4,
+  "total_network_length_km": 34.005310329092275,
+  "total_stops_served": 49,
+  "unique_stops_covered": 45,
+  "total_stops_in_network": 235,
+  "coverage_percentage": 19.148936170212767,
+  "total_network_demand": 130.74432,
+  "average_line_length_km": 8.501327582273069,
+  "lines_summary": [
+    {
+      "line_id": 1,
+      "route": "Stradom 04 ↔ Miśnieńska 01",
+      "length_km": 12.217921602945923,
+      "stops": 15
+    },
+    {
+      "line_id": 2,
+      "route": "Teatr Bagatela 01 ↔ Czerwone Maki P+R 01",
+      "length_km": 9.692152216023638,
+      "stops": 15
+    },
+    {
+      "line_id": 3,
+      "route": "św. Gertrudy 02 ↔ Bronowice Małe 01",
+      "length_km": 7.990584147733322,
+      "stops": 14
+    },
+    {
+      "line_id": 4,
+      "route": "Stary Kleparz 01 ↔ Miodowa 01",
+      "length_km": 4.104652362389394,
+      "stops": 5
+    }
+  ]
+}
