@@ -1,25 +1,14 @@
 import os
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
+import osmnx as ox
+import geopandas as gpd
 
-# Install necessary libraries if they are not already installed
-# This is crucial for the script to run in environments where these might be missing.
-try:
-    import osmnx as ox
-    import geopandas as gpd
-except ImportError:
-    print("Installing osmnx, geopandas, and matplotlib...")
-    os.system("pip install osmnx geopandas matplotlib")
-    import osmnx as ox
-    import geopandas as gpd
 
 # Define the place for which to download and plot POIs
 place_name = "Kraków, Poland"
 
-# Define a dictionary of OpenStreetMap tags for various points of interest (POIs).
-# Each key represents a category (e.g., "schools", "museums"), and its value is
-# another dictionary containing the OSM tags to query for that category.
-# This allows for flexible and extensive data retrieval from OSM.
 tags = {
     "schools": {"amenity": "school"},
     "universities": {"amenity": "university"},
@@ -148,7 +137,6 @@ for category, gdf in all_pois_gdfs.items():
         print(f"No data to plot for {category}.")
 
 # Add a title to the map.
-ax.set_title(f"Points of Interest in {place_name}", fontsize=18)
 # Add labels for longitude and latitude (though they are turned off for a cleaner look).
 ax.set_xlabel("Longitude")
 ax.set_ylabel("Latitude")
