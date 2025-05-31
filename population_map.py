@@ -64,6 +64,12 @@ ax.set_ylabel('Latitude (WGS84)', fontsize=12)
 # Add a legend
 ax.legend()
 
+# --- Step 7: Export hexagons to GeoJSON ---
+# Save the hexagons with population data to GeoJSON file
+output_file = "population_hexagons.geojson"
+gdf_hex_wgs84.to_file(output_file, driver='GeoJSON')
+print(f"Hexagons exported to: {output_file}")
+
 # Adjust layout and show the plot
 plt.tight_layout()
 plt.show()
