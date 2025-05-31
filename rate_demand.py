@@ -2,6 +2,7 @@ import json
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.animation import FuncAnimation
+import os # Import the os module for directory creation
 
 # --- Load GeoJSON data from file ---
 geojson_file = "krakow_pois.geojson"
@@ -117,6 +118,10 @@ else:
     ax.set_xlim(19.85, 20.1)
     ax.set_ylim(50.0, 50.1)
 
+# --- Create directory for hourly data ---
+output_dir = "poi_demand_time"
+os.makedirs(output_dir, exist_ok=True) # Create the directory if it doesn't exist
+
 # --- Animation function ---
 def update(frame):
     day_multiplier = day_demand_function_chart(frame)
@@ -153,18 +158,39 @@ def update(frame):
     cb.update_normal(new_hb)
     cb.set_label("Total Weighted Demand in Bin")
 
-    ax.set_title(f"Animated Heatmap (Krok: {frame}, Popyt Dzienny: {day_multiplier:.2f}, Popyt Nocny (Bary): {night_multiplier:.2f})")
+    ax.set_title(f"Animated Heatmap (Hour: {frame}, Day Demand: {day_multiplier:.2f}, Night Demand (Bars): {night_multiplier:.2f})")
+
+    # --- Save hexbin data for the current hour ---
+    offsets = new_hb.get_offsets()
+    values = new_hb.get_array()
+
+    # Prepare data for saving
+    hex_data = []
+    for i in range(len(offsets)):
+        hex_data.append({
+            "longitude": offsets[i][0],
+            "latitude": offsets[i][1],
+            "demand": values[i]
+        })
+
+    # Save to JSON file
+    output_filename = os.path.join(output_dir, f"hexbin_hour_{frame:02d}.json")
+    with open(output_filename, 'w', encoding='utf-8') as f:
+        json.dump(hex_data, f, indent=4)
+    print(f"Saved hexbin data for hour {frame:02d} to '{output_filename}'")
+
+
     return new_hb,
 
 # --- Create and save the animation ---
 anim = FuncAnimation(fig, update, frames=range(24), blit=False, repeat=False, interval=50)
 
 try:
-    print("Próba zapisania animacji do pliku 'krakow_heatmap_day_all_night_bars_demand.gif'...")
+    print("Attempting to save animation to 'krakow_heatmap_day_all_night_bars_demand.gif'...")
     anim.save('krakow_heatmap_day_all_night_bars_demand.gif', writer='pillow', fps=5)
-    print("Animacja została zapisana jako 'krakow_heatmap_day_all_night_bars_demand.gif'.")
+    print("Animation saved as 'krakow_heatmap_day_all_night_bars_demand.gif'.")
 except Exception as e:
-    print(f"Błąd podczas zapisywania animacji: {e}")
-    print("Upewnij się, że masz zainstalowany 'pillow' (pip install pillow) lub odpowiedni 'writer' (np. 'imagemagick'/'ffmpeg') i jest on w PATH.")
+    print(f"Error saving animation: {e}")
+    print("Please ensure 'pillow' (pip install pillow) or an appropriate writer (e.g., 'imagemagick'/'ffmpeg') is installed and in your PATH.")
 
-# plt.show() # Odkomentuj, jeśli chcesz spróbować wyświetlić interaktywnie
+# plt.show() # Uncomment if you want to try interactive display
